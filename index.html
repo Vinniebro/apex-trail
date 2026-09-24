@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Apex Trail Academy</title>
+
+<style>
+:root{
+  --bg:#0b0d0c;
+  --panel:#151917;
+  --muted:#9aa39e;
+  --text:#f4f6f3;
+  --accent:#d9ff45;
+  --line:#29302c;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* NAVIGATION */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 6vw;
+  background:linear-gradient(#0b0d0cf2,transparent);
+}
+
+.logo{
+  font-weight:900;
+  letter-spacing:-.04em;
+  font-size:1.35rem;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.links{
+  display:flex;
+  gap:28px;
+  color:#c9cfcb;
+  font-size:.9rem;
+}
+
+.links a:hover{
+  color:var(--accent);
+}
+
+/* HERO */
+
+.hero{
+  min-height:92vh;
+  padding:150px 6vw 80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:5vw;
+  background:
+    radial-gradient(
+      circle at 78% 45%,
+      #26321e 0,
+      #121612 28%,
+      transparent 52%
+    );
+}
+
+.eyebrow{
+  color:var(--accent);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:.75rem;
+}
+
+.hero h1{
+  font-size:clamp(4rem,8vw,8.5rem);
+  line-height:.82;
+  letter-spacing:-.075em;
+  margin:18px 0 28px;
+  max-width:750px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.7;
+  max-width:560px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  margin-top:32px;
+}
+
+.btn{
+  padding:14px 20px;
+  border-radius:999px;
+  font-weight:800;
+  border:1px solid var(--line);
+}
+
+.btn.primary{
+  background:var(--accent);
+  color:#10140d;
+  border-color:var(--accent);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* BIKE */
+
+.bike{
+  width:min(100%,650px);
+  filter:drop-shadow(0 30px 50px #000);
+  transform:rotate(-3deg);
+}
+
+.wheel{
+  fill:none;
+  stroke:#e9eee9;
+  stroke-width:4;
+}
+
+.frame{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.thin{
+  fill:none;
+  stroke:#bfc8c2;
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* SECTIONS */
+
+.section{
+  padding:100px 6vw;
+}
+
+.section h2{
+  font-size:clamp(2.5rem,5vw,5rem);
+  letter-spacing:-.06em;
+  margin:0 0 16px;
+}
+
+.sub{
+  color:var(--muted);
+  max-width:650px;
+  line-height:1.7;
+}
+
+/* LESSON CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-top:44px;
+}
+
+.card{
+  background:linear-gradient(145deg,#171c19,#111411);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:26px;
+  min-height:245px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:after{
+  content:"";
+  position:absolute;
+  right:-30px;
+  bottom:-35px;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:1px solid #394238;
+  opacity:.5;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#65705f;
+}
+
+.card .icon{
+  font-size:1.7rem;
+  color:var(--accent);
+  font-weight:900;
+}
+
+.card h3{
+  font-size:1.2rem;
+  margin:38px 0 10px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:.95rem;
+}
+
+/* TRAIL TIPS */
+
+.showcase{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:45px;
+}
+
+.bike-card{
+  border-radius:28px;
+  overflow:hidden;
+  background:#171b18;
+  border:1px solid var(--line);
+  padding:28px;
+  min-height:410px;
+  position:relative;
+}
+
+.bike-card .tag{
+  color:var(--accent);
+  font-weight:800;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+}
+
+.bike-card h3{
+  font-size:2.4rem;
+  letter-spacing:-.05em;
+  margin:10px 0;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:70px;
+}
+
+.stat{
+  background:var(--bg);
+  padding:35px;
+}
+
+.stat strong{
+  font-size:2.8rem;
+  display:block;
+  letter-spacing:-.06em;
+}
+
+.stat span{
+  color:var(--muted);
+}
+
+/* FOOTER */
+
+footer{
+  padding:45px 6vw;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:800px){
+
+  .links{
+    display:none;
+  }
+
+  .hero,
+  .showcase{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:4.4rem;
+  }
+
+  .bike{
+    margin-top:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="nav">
+
+  <a class="logo" href="#top">
+    APEX TRAIL<span>.</span>
+  </a>
+
+  <div class="links">
+    <a href="#skills">Skills</a>
+    <a href="#tips">Tips</a>
+    <a href="#safety">Safety</a>
+    <a href="#setup">Setup</a>
+  </div>
+
+</nav>
+
+<main id="top">
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Your journey starts here
+    </div>
+
+    <h1>
+      LEARN.<br>
+      <span style="color:var(--accent)">RIDE.</span><br>
+      PROGRESS.
+    </h1>
+
+    <p>
+      We’re an up-and-coming online MTB academy helping you become
+      the best rider you can be — with fun, practical and safety-first
+      lessons designed to build confidence, skills and control.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="#skills">
+        Start learning →
+      </a>
+
+      <a class="btn" href="#safety">
+        Ride safe
+      </a>
+    </div>
+
+  </div>
+
+  <!-- MTB SVG -->
+
+  <svg
+    class="bike"
+    viewBox="0 0 800 430"
+    aria-label="Stylized mountain bike illustration"
+  >
+
+    <circle
+      class="wheel"
+      cx="170"
+      cy="315"
+      r="100"
+    />
+
+    <circle
+      class="wheel"
+      cx="630"
+      cy="315"
+      r="100"
+    />
+
+    <path
+      class="frame"
+      d="
+      M170 315
+      L295 125
+      L410 315
+      L170 315
+
+      M295 125
+      L515 125
+      L410 315
+
+      M515 125
+      L630 315
+
+      M515 125
+      L555 65
+
+      M535 65
+      L575 65
+
+      M295 125
+      L270 75
+
+      M250 75
+      L292 75
+      "
+    />
+
+    <path
+      class="thin"
+      d="
+      M410 315
+      L465 195
+      L515 125
+
+      M465 195
+      L405 190
+
+      M400 190
+      L430 150
+      "
+    />
+
+  </svg>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section class="section" id="skills">
+
+  <div class="eyebrow">
+    MTB academy curriculum
+  </div>
+
+  <h2>
+    Master the trail.<br>
+    One skill at a time.
+  </h2>
+
+  <p class="sub">
+    A practical progression from first fundamentals to technical
+    trail riding. Start easy, practise with control, then level up
+    when each skill feels natural.
+  </p>
+
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="icon">01</div>
+      <h3>Ready position</h3>
+      <p>
+        Build a stable stance with bent elbows and knees,
+        level pedals, relaxed hands and eyes looking ahead.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">02</div>
+      <h3>Braking</h3>
+      <p>
+        Learn smooth braking with both brakes, control weight
+        transfer and slow down before steep or technical sections.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">03</div>
+      <h3>Cornering</h3>
+      <p>
+        Brake before the turn, look through the exit,
+        lean the bike and keep traction through the whole corner.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">04</div>
+      <h3>Climbing</h3>
+      <p>
+        Choose the right gear, keep a steady cadence and find
+        the sweet spot between seated traction and body position.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">05</div>
+      <h3>Descending</h3>
+      <p>
+        Stay centred, keep your vision up and use progressive
+        braking while the bike moves underneath you.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">06</div>
+      <h3>Rocks & roots</h3>
+      <p>
+        Relax your grip, pick a clean line and let the bike
+        roll over rough ground without fighting every movement.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">07</div>
+      <h3>Jumps</h3>
+      <p>
+        Start small and learn take-off, body position and
+        controlled landings on a safe, suitable feature.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">08</div>
+      <h3>Bike setup</h3>
+      <p>
+        Understand tyre pressure, suspension, saddle position
+        and cockpit setup so your bike works with you.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">09</div>
+      <h3>Safety</h3>
+      <p>
+        Ride within your ability, wear appropriate protection,
+        carry essentials and know when to walk a feature.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">10</div>
+      <h3>Trail etiquette</h3>
+      <p>
+        Respect other riders, walkers, wildlife and trail rules.
+        Ride predictably, control speed and leave no trace.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">11</div>
+      <h3>Repairs & maintenance</h3>
+      <p>
+        Learn essential checks and fixes including punctures,
+        chains, brakes, bolts and pre-ride inspections.
+      </p>
+    </article>
+
+
+    <article class="card">
+      <div class="icon">12</div>
+      <h3>Progression plan</h3>
+      <p>
+        Turn practice into progress with simple goals:
+        control first, consistency second, speed and difficulty last.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- TRAIL TIPS -->
+
+<section class="section" id="tips">
+
+  <div class="eyebrow">
+    Trail playbook
+  </div>
+
+  <h2>
+    Tips for the<br>
+    tricky bits.
+  </h2>
+
+
+  <div class="showcase">
+
+    <article class="bike-card">
+
+      <div class="tag">
+        Climbing
+      </div>
+
+      <h3>
+        Find traction
+      </h3>
+
+      <p class="sub">
+        Use a sustainable gear, keep a steady cadence,
+        sit centred, relax your upper body and shift your
+        weight only as much as needed to stop the rear
+        wheel from spinning.
+      </p>
+
+      <p class="sub">
+        <strong>Trick:</strong>
+        On loose climbs, smooth pedalling usually beats brute force.
+      </p>
+
+    </article>
+
+
+    <article class="bike-card">
+
+      <div class="tag">
+        Descending
+      </div>
+
+      <h3>
+        Stay centred
+      </h3>
+
+      <p class="sub">
+        Look well down the trail, keep elbows and knees bent,
+        brake before obstacles and use both brakes progressively.
+        Move your hips back on steep sections without hanging
+        off the rear.
+      </p>
+
+      <p class="sub">
+        <strong>Trick:</strong>
+        Slow down before the difficult feature,
+        not halfway through it.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- SAFETY -->
+
+<section class="section" id="safety">
+
+  <div class="eyebrow">
+    Safety & etiquette
+  </div>
+
+  <h2>
+    Ride prepared.<br>
+    Respect the trail.
+  </h2>
+
+
+  <div class="grid">
+
+    <article class="card">
+
+      <div class="icon">⛑</div>
+
+      <h3>
+        Protect yourself
+      </h3>
+
+      <p>
+        Wear a properly fitted helmet. For technical riding,
+        consider eye protection and appropriate gloves and pads.
+        Carry water, a phone, basic tools and a repair kit.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">✓</div>
+
+      <h3>
+        Know your limits
+      </h3>
+
+      <p>
+        Walk a feature if you are unsure. Build difficulty
+        gradually, ride with a buddy when possible, and tell
+        someone your route on longer or remote rides.
+      </p>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">↺</div>
+
+      <h3>
+        Share the trail
+      </h3>
+
+      <p>
+        Follow local signs and access rules, give way appropriately,
+        control your speed and avoid damaging wet or fragile trails.
+        Leave no litter behind.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- BIKE SETUP -->
+
+<section class="section" id="setup">
+
+  <div class="eyebrow">
+    Bike setup
+  </div>
+
+  <h2>
+    Small adjustments.<br>
+    Big difference.
+  </h2>
+
+  <p class="sub">
+    Before a ride, check tyre pressure for the terrain and rider
+    weight, test both brakes, confirm wheels and axles are secure,
+    inspect the drivetrain and suspension, and make sure your
+    contact points feel comfortable.
+  </p>
+
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong>Tyres</strong>
+      <span>
+        Check pressure, tread and damage
+      </span>
+    </div>
+
+
+    <div class="stat">
+      <strong>Brakes</strong>
+      <span>
+        Firm levers, healthy pads and rotors
+      </span>
+    </div>
+
+
+    <div class="stat">
+      <strong>Controls</strong>
+      <span>
+        Secure cockpit and comfortable position
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <span>
+    © 2026 APEX TRAIL ACADEMY.
+  </span>
+
+  <span>
+    Learn. Ride. Progress.
+  </span>
+
+</footer>
+
+</body>
+</html>
